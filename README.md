@@ -1,1 +1,2 @@
 # python-finance
+Modify expenses.py to include your actual salary and expenses (specified by salary and monthlyExpenses, respectively). Then run expenses.py. That's it, that's all you have to do. Was that so hard?
