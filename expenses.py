@@ -11,7 +11,25 @@ from taxes import calculateFederalTaxes, calculateCaliforniaTaxes, calculateSoci
 
 def calculate():
     salary = 160160.0
-
+    
+    monthlyExpenses = {
+        "Rent": 2000.0,
+        "Renter's Insurance": 15.0,
+        "Electricity": 50.0,
+        "Water": 30.0,
+        "Gas": 30.0,
+        "Trash": 50.0,
+        "Parking": 0.0,
+        "Fun": 500.0,
+        "Car": 200.0,
+        "Car Insurance": 200.0,
+        "Car Gas": 240.0,
+        "Streaming": 100,
+        "Cat": 150,
+    }
+    
+    four01kPercentage = 10
+    
     balance = Balance("11/2023 - 2/2025")
     
     federalYearlyTaxes = calculateFederalTaxes(salary)
@@ -28,33 +46,14 @@ def calculate():
     
     biweeklyNetTaxes = federalBiweeklyTaxes + stateBiweeklyTaxes + socialSecurityBiweeklyTaxes + medicareBiweeklyTaxes + sdiBiweeklyTaxes
     biweeklyGrossIncome = salary / 26
-    biWeekly401kContribution = 0.1 * biweeklyGrossIncome
+    biWeekly401kContribution = (four01kPercentage/100) * biweeklyGrossIncome
 
     biweeklyNetIncome = biweeklyGrossIncome - biweeklyNetTaxes - biWeekly401kContribution
     
     monthlyNetIncome = biweeklyNetIncome * 26 / 12
     
-    monthlyIncome = {"Job": monthlyNetIncome, "Rent Relief": 300.}
+    monthlyIncome = {"Job": monthlyNetIncome}
 
-    monthlyExpenses = {
-        "Rent": 2600.0,
-        "Renter's Insurance": 15.0,
-        "Electricity": 100.0,
-        "Water": 30.0,
-        "Gas": 30.0,
-        "Trash": 50.0,
-        "Parking": 0.0,
-        "Party": 800,
-        "Car": 390.0,
-        "Car Insurance": 200.0,
-        "Car Gas": 240.0,
-        "Hulu": 75.0,
-        "Netflix": 8.0,
-        "Spotify": 10.0,
-        "Apple TV": 10.0,
-        "Guitar Tabs": 5.0,
-        "Cat": 150
-    }
 
     balance.addIncome(monthlyIncome)
     balance.addExpenses(monthlyExpenses)
